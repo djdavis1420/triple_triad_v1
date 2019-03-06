@@ -12,14 +12,11 @@ class Board:
     }
 
     def __repr__(self):
-        top_positions = [Board.__represent_card(v) for k, v in self.positions.items() if 'top' in k]
-        mid_positions = [Board.__represent_card(v) for k, v in self.positions.items() if 'mid' in k]
-        bot_positions = [Board.__represent_card(v) for k, v in self.positions.items() if 'bot' in k]
-        top_line = '|'.join(top_positions)
-        mid_line = '|'.join(mid_positions)
-        bot_line = '|'.join(bot_positions)
-        divider = '-' * 50
-        return f'{top_line}\n{divider}\n{mid_line}\n{divider}\n{bot_line}'
+        top_line = '  ||  '.join([Board.__represent_card(v) for k, v in self.positions.items() if 'top' in k])
+        mid_line = '  ||  '.join([Board.__represent_card(v) for k, v in self.positions.items() if 'mid' in k])
+        bot_line = '  ||  '.join([Board.__represent_card(v) for k, v in self.positions.items() if 'bot' in k])
+        line_divider = '-' * 75
+        return f'{top_line}\n{line_divider}\n{mid_line}\n{line_divider}\n{bot_line}'
 
     @staticmethod
     def __represent_card(v):
