@@ -35,7 +35,7 @@ while turn_count < 10:
 
     utilities.place_card(game, current_player, played_card, selected_position)
 
-    challenges(game, played_card, selected_position, P1, P2)
+    challenges(game, played_card, selected_position, current_player, P1, P2)
 
     print(game)
 
