@@ -40,3 +40,5 @@ while turn_count < 10:
     print(game)
 
     turn_count += 1
+
+print(utilities.determine_winner(game, P1, P2))
