@@ -26,6 +26,7 @@ def place_card(game, player, card, position):
             v['card'] = card
             v['original_owner'] = player.name
             v['current_owner'] = player.name
+    player.cards.remove(card['name'])
     return game.positions
 
 
