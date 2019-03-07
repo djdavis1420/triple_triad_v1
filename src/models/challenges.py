@@ -78,7 +78,7 @@ def __bot_left_placement(game, played_card, current_player, P1, P2):
     if game.positions['bot_center']['card'] is not None and played_card['r_value'] > game.positions['bot_center']['card']['l_value']:
         __flip_owner(game.positions['bot_center'], current_player, P1, P2)
     if game.positions['mid_left']['card'] is not None and played_card['t_value'] > game.positions['mid_left']['card']['b_value']:
-        __flip_owner(game.postions['mid_left'], current_player, P1, P2)
+        __flip_owner(game.positions['mid_left'], current_player, P1, P2)
 
 
 def __bot_center_placement(game, played_card, current_player, P1, P2):
