@@ -1,23 +1,29 @@
 import os
 import mysql.connector as MySQLdb
-from src.models.all_cards import CARDS
 
 
 def get_credentials():
-    username = os.environ['database_username']
-    password = os.environ['database_password']
-    return username, password
+    db_username = os.environ['database_username']
+    db_password = os.environ['database_password']
+    return db_username, db_password
 
 
-def create_cards_table(username, password):
-    conn = MySQLdb.connect(user=username, password=password, host='localhost', port='3306', database='tripletriad')
+def check_for_player(db_username, db_password, username):
+    conn = MySQLdb.connect(user=db_username, password=db_password, host='localhost', port='3306', database='tripletriad')
     c = conn.cursor()
-    c.execute('''DROP TABLE IF EXISTS cards''')
-    c.execute('''CREATE TABLE cards (id VARCHAR(4) UNIQUE PRIMARY KEY, card_name VARCHAR(50), element VARCHAR(25),
-                t_value INT, b_value INT, l_value INT, r_value INT);''')
-    for card in CARDS:
-        card_values = (card['id'], card['name'], card['element'], card['t_value'], card['b_value'], card['l_value'], card['r_value'])
-        command = '''INSERT INTO cards (id, card_name, element, t_value, b_value, l_value, r_value) VALUES (%s, %s, %s, %s, %s, %s, %s);'''
-        c.execute(command, card_values)
+    query = '''SELECT * FROM players WHERE user_name = %s;'''
+    c.execute(query, username)
+    result = c.fetchall()
     conn.commit()
     conn.close()
+    return result
+
+
+def create_player(db_username, db_password, new_user):
+    conn = MySQLdb.connect(user=db_username, password=db_password, host='localhost', port='3306', database='tripletriad')
+    c = conn.cursor()
+    command = '''INSERT INTO players (user_name, first_name, preferred_difficulty) VALUES (%s, %s, %s);'''
+    c.execute(command, new_user)
+    conn.commit()
+    conn.close()
+
