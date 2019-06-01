@@ -3,7 +3,7 @@ from src.models.all_cards import CARDS
 
 
 def create_cards_table(db_username, db_password):
-    conn = MySQLdb.connect(user=db_username, password=db_password, host='localhost', port='3306', database='tripletriad')
+    conn = MySQLdb.connect(user=db_username, password=db_password, host='localhost', port='3306', database='triple_triad')
     c = conn.cursor()
     c.execute('''DROP TABLE IF EXISTS cards;''')
     c.execute('''CREATE TABLE cards (id VARCHAR(4) UNIQUE PRIMARY KEY, card_name VARCHAR(50), element VARCHAR(25),
@@ -17,7 +17,7 @@ def create_cards_table(db_username, db_password):
 
 
 def create_players_table(db_username, db_password):
-    conn = MySQLdb.connect(user=db_username, password=db_password, host='localhost', port='3306', database='tripletriad')
+    conn = MySQLdb.connect(user=db_username, password=db_password, host='localhost', port='3306', database='triple_triad')
     c = conn.cursor()
     c.execute('''DROP TABLE IF EXISTS players;''')
     c.execute('''CREATE TABLE players (id INT AUTO_INCREMENT UNIQUE PRIMARY KEY,
@@ -28,7 +28,7 @@ def create_players_table(db_username, db_password):
 
 
 def create_decks_table(db_username, db_password):
-    conn = MySQLdb.connect(user=db_username, password=db_password, host='localhost', port='3306', database='tripletriad')
+    conn = MySQLdb.connect(user=db_username, password=db_password, host='localhost', port='3306', database='triple_triad')
     c = conn.cursor()
     c.execute('''DROP TABLE IF EXISTS decks;''')
     c.execute('''CREATE TABLE decks (player_id INT NOT NULL, card_id VARCHAR(4) NOT NULL,
